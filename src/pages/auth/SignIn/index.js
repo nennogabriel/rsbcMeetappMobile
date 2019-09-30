@@ -17,7 +17,7 @@ import {
 
 export default function SignIn({ navigation }) {
   const passwordRef = useRef();
-  const loading = false;
+  const working = false;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -28,7 +28,6 @@ export default function SignIn({ navigation }) {
         <Image source={logo} />
         <Form>
           <FormInput
-            icon="mail-outline"
             keyboardType="email-address"
             autoCorrect={false}
             autoCapitalize="none"
@@ -39,7 +38,6 @@ export default function SignIn({ navigation }) {
             onChangeText={setEmail}
           />
           <FormInput
-            icon="lock-outline"
             secureTextEntry
             placeholder="Sua senha secreta"
             ref={passwordRef}
@@ -49,7 +47,7 @@ export default function SignIn({ navigation }) {
             onChangeText={setPassword}
           />
 
-          <SubmitButton loading={loading} onPress={handleSubmit}>
+          <SubmitButton working={working} onPress={handleSubmit}>
             Entrar
           </SubmitButton>
         </Form>
