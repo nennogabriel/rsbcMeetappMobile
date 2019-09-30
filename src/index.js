@@ -7,7 +7,7 @@ import Background from './components/Background';
 export default function App() {
   return (
     <Background>
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" backgroundColor="#22202C" />
         <Router />
       </SafeAreaView>
