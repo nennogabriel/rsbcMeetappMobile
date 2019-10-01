@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 import logo from '~/assets/logo.png';
 
 import Background from '~/components/Background';
+import { authSignInRequest } from '~/store/modules/auth/actions';
 
 import {
   Container,
@@ -16,12 +18,15 @@ import {
 } from '~/pages/auth/styles';
 
 export default function SignIn({ navigation }) {
+  const dispatch = useDispatch();
   const passwordRef = useRef();
   const working = false;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    dispatch(authSignInRequest(email, password));
+  }
   return (
     <Background>
       <Container>

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import logo from '~/assets/logo.png';
@@ -14,18 +15,22 @@ import {
   SignLink,
   SignLinkText,
 } from '~/pages/auth/styles';
+import { authSignUpRequest } from '~/store/modules/auth/actions';
 
 export default function SignUp({ navigation }) {
+  const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [pasword, setPasword] = useState('');
+  const [password, setPassword] = useState('');
 
   const loading = false;
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    dispatch(authSignUpRequest(name, email, password));
+  }
   return (
     <Background>
       <Container>
@@ -57,8 +62,8 @@ export default function SignUp({ navigation }) {
             ref={passwordRef}
             returnKeyType="send"
             onSubmitEditing={handleSubmit}
-            value={pasword}
-            onChangeText={setPasword}
+            value={password}
+            onChangeText={setPassword}
           />
 
           <SubmitButton loading={loading} onPress={handleSubmit}>

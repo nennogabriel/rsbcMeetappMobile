@@ -5,18 +5,18 @@ import { SafeAreaView, StatusBar } from 'react-native';
 
 import '~/config/ReactotronConfig';
 
-import Router from './routes';
+import App from './App';
 import Background from './components/Background';
 import { store, persistor } from './store';
 
-export default function App() {
+export default function AppIndex() {
   return (
     <Background>
       <StatusBar barStyle="light-content" backgroundColor="#22202C" />
       <Provider store={store}>
         <SafeAreaView style={{ flex: 1 }}>
           <PersistGate persistor={persistor}>
-            <Router />
+            <App />
           </PersistGate>
         </SafeAreaView>
       </Provider>
