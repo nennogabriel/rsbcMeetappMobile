@@ -1,35 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, MeetupList } from './styles';
 import Meetup from '~/components/Meetup';
+import api from '~/services/api';
 
 export default function Dashboard() {
   // const [date, setDate] = useState(new Date());
-  const [meetups, setMeetups] = useState([
-    {
-      past: false,
-      id: 6,
-      title: 'Dev Python',
-      description: 'Um envento de python carái',
-      location: 'Mirc pantanal sala 1',
-      date: '2019-09-26T18:00:00.000Z',
-      createdAt: '2019-09-21T00:47:12.605Z',
-      updatedAt: '2019-09-21T00:47:12.605Z',
-      file_id: 1,
-      user_id: 2,
-      User: {
-        name: 'José',
-        email: 'jose@seal.works',
-      },
-      File: {
-        url:
-          'http://localhost:3333/static/b0d093ecd1b37df7f600ed7d68fa181e.png',
-        name: '2015-12-27-1.png',
-        path: 'b0d093ecd1b37df7f600ed7d68fa181e.png',
-      },
-    },
-  ]);
+  const [meetups, setMeetups] = useState([]);
+
+  useEffect(() => {
+    async function loadMeetups() {
+      const response = api.get('meetups');
+      setMeetups(response.data);
+    }
+    loadMeetups();
+  }, []);
+
   function handleButton(id) {
     console.tron.log(id);
   }
@@ -46,7 +33,7 @@ export default function Dashboard() {
         keyExtrator={item => String(item.id)}
         renderItem={({ item }) => (
           <Meetup onPress={() => handleButton(item.id)} data={item}>
-            Inscrever-se
+            Realizar inscrição
           </Meetup>
         )}
       />
