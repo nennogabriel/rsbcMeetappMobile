@@ -1,7 +1,7 @@
 import React from 'react';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 
 import '~/config/ReactotronConfig';
 
@@ -14,11 +14,9 @@ export default function AppIndex() {
     <Background>
       <StatusBar barStyle="light-content" backgroundColor="#22202C" />
       <Provider store={store}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <PersistGate persistor={persistor}>
-            <App />
-          </PersistGate>
-        </SafeAreaView>
+        <PersistGate persistor={persistor} style={{ flex: 1 }}>
+          <App />
+        </PersistGate>
       </Provider>
     </Background>
   );
